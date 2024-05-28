@@ -14,9 +14,9 @@ export default class DonationsApi {
         });
         
         this.router.get('/:donationId', (req: Request, res: Response) => {
-            const donationId = Number(req.params.id);
+            const donationId = Number(req.params.donationId);
             if (!donationId || !_.isNumber(donationId)) {
-                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
+                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donationId}`);
                 return;
             }
         
@@ -47,9 +47,9 @@ export default class DonationsApi {
         });
         
         this.router.delete('/:donationId', (req: Request, res: Response) => {
-            const donationId = Number(req.params.id);;
+            const donationId = Number(req.params.donationId);;
             if (!donationId || !_.isNumber(donationId)) {
-                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
+                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donationId}`);
                 return;
             }
             const donation = this.service.deleteDonation(donationId);

@@ -15,7 +15,7 @@ export default class DonateApi {
         });
         
         this.router.get('/:fundRaiserId', (req: Request, res: Response) => {
-            const fundRaiserId = Number(req.params.id);
+            const fundRaiserId = Number(req.params.fundRaiserId);
             if (!fundRaiserId || !_.isNumber(fundRaiserId)) {
                 res.status(400).send(`fundRaiserId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
                 return;
@@ -47,9 +47,9 @@ export default class DonateApi {
         });
         
         this.router.delete('/:fundRaiserId', (req: Request, res: Response) => {
-            const fundRaiserId = Number(req.params.id);;
+            const fundRaiserId = Number(req.params.fundRaiserId);;
             if (!fundRaiserId || !_.isNumber(fundRaiserId)) {
-                res.status(400).send(`fundRaiserId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
+                res.status(400).send(`fundRaiserId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.fundRaiserId}`);
                 return;
             }
             const fundRaiser = this.service.deleteFundRaiser(fundRaiserId);

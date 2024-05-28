@@ -14,9 +14,9 @@ export default class GroupsApi {
         });
         
         this.router.get('/:groupId', (req: Request, res: Response) => {
-            const groupId = Number(req.params.id);
+            const groupId = Number(req.params.groupId);
             if (!groupId || !_.isNumber(groupId)) {
-                res.status(400).send(`groupId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
+                res.status(400).send(`groupId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.groupId}`);
                 return;
             }    
             const group = this.service.getGroup(groupId);
@@ -46,9 +46,9 @@ export default class GroupsApi {
         });
         
         this.router.delete('/:groupId', (req: Request, res: Response) => {
-            const groupId = Number(req.params.id);;
+            const groupId = Number(req.params.groupId);;
             if (!groupId || !_.isNumber(groupId)) {
-                res.status(400).send(`groupId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.id}`);
+                res.status(400).send(`groupId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.groupId}`);
                 return;
             }
             const group = this.service.deleteGroup(groupId);
