@@ -14,8 +14,8 @@ export default class GroupsApi {
             res.send(this.service.getAll());
         });
         
-        this.router.get('/:groupId', isNumber, (req: Request, res: Response) => {
-            const groupId = Number(req.params.groupId);   
+        this.router.get('/:id', isNumber, (req: Request, res: Response) => {
+            const groupId = Number(req.params.id);   
             res.send(this.service.getGroup(groupId));
         });
         
@@ -31,8 +31,8 @@ export default class GroupsApi {
             res.end();
         });
         
-        this.router.delete('/:groupId', isNumber, (req: Request, res: Response) => {
-            const groupId = Number(req.params.groupId);;
+        this.router.delete('/:id', isNumber, (req: Request, res: Response) => {
+            const groupId = Number(req.params.id);;
             res.send(this.service.deleteGroup(groupId));
         });
     }

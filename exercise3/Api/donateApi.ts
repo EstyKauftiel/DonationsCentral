@@ -14,12 +14,12 @@ export default class DonateApi {
             res.send(this.service.getAll());
         });
         
-        this.router.get('/:fundRaiserId',isNumber, (req: Request, res: Response) => {
-            const fundRaiserId = Number(req.params.fundRaiserId);     
+        this.router.get('/:id',isNumber, (req: Request, res: Response) => {
+            const fundRaiserId = Number(req.params.id);     
             res.send(this.service.getFundRaiser(fundRaiserId));
         });
         
-        this.router.post('/',isNotNull,logRequest, (req: Request, res: Response) => {
+        this.router.post('/',isNotNull, (req: Request, res: Response) => {
             const fundRaiser = req.body;
             if(!_.isNumber(fundRaiser.id) || !_.isString(fundRaiser.name) || !_.isString(fundRaiser.cell) ||fundRaiser.cell.length!==10 )
             {
@@ -41,8 +41,8 @@ export default class DonateApi {
             res.end();
         });
         
-        this.router.delete('/:fundRaiserId',isNumber, (req: Request, res: Response) => {
-            const fundRaiserId = Number(req.params.fundRaiserId);;
+        this.router.delete('/:id',isNumber, (req: Request, res: Response) => {
+            const fundRaiserId = Number(req.params.id);;
             res.send(this.service.deleteFundRaiser(fundRaiserId));
         });
     }

@@ -8,15 +8,53 @@ export default class GroupsService{
         this.groupsList=[
             {
                 id: 1,
-                donate: []
+                donate: [ {
+                id: 1,
+                name: "Lea",
+                cell: "058963215",
+                groupNum: 1,
+                donations: [ 
+                {
+                    id: 1,
+                    name: "Yosf",
+                    cell: "0521485247",
+                    sum: 560,
+                    FundRaiserID:1
+                },
+            ]
+            }]
             },
             {
                 id: 2,
-                donate: []
+                donate: [{
+                    id: 2,
+                    name: "Esty",
+                    cell: "0569823654",
+                    groupNum: 2,
+                    donations: [{
+                        id: 2,
+                        name: "Michael",
+                        cell: "0584236978",
+                        sum: 200,
+                        FundRaiserID:2
+                    }]
+                }]
             },
             {
                 id: 3,
-                donate: []
+                donate: [ {
+                    id: 4,
+                    name: "Israel",
+                    cell: "0548796631",
+                    groupNum: 3,
+                    donations: [{
+                        id: 4,
+                        name: "Tamar",
+                        cell: "0536987236",
+                        sum: 1050,
+                        FundRaiserID:4
+                    }]
+                }]
             },
             {
                 id: 4,
