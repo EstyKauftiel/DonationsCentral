@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import DonationsService from "../Services/donationsService";
 import _ from "lodash";
+import { isNotNull, isNumber } from "../middlewares";
 
 export default class DonationsApi {
     public router: Router;
@@ -13,29 +14,23 @@ export default class DonationsApi {
             res.send(this.service.getAll());
         });
         
-        this.router.get('/:donationId', (req: Request, res: Response) => {
+        this.router.get('/:donationId', isNumber, (req: Request, res: Response) => {
             const donationId = Number(req.params.donationId);
-            if (!donationId || !_.isNumber(donationId)) {
-                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donationId}`);
-                return;
-            }
-        
-            const donation = this.service.getDonation(donationId);
-            res.send(donation);
+            res.send(this.service.getDonation(donationId));
         });
         
-        this.router.post('/', (req: Request, res: Response) => {
+        this.router.post('/', isNotNull, (req: Request, res: Response) => {
             const donation = req.body;
             if(!_.isNumber(donation.id) || !_.isString(donation.name) || !_.isString(donation.cell) ||donation.cell.length!==10  || !_.isNumber(donation.sum))
-            {
-                res.status(400).send(`donation is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donation}`);
-                return;
-            }
-            this.service.addDonation(donation);
+                {
+                    res.status(400).send(`donation is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donation}`);
+                    return;
+                }
+            this.service.addDonation(req.body);
             res.end();
         });
 
-        this.router.put('/', (req: Request, res: Response) => {
+        this.router.put('/',isNotNull, (req: Request, res: Response) => {
             const donation = req.body;
             if(!_.isNumber(donation.id) || !_.isString(donation.name) || !_.isString(donation.cell) ||donation.cell.length!==10  || !_.isNumber(donation.sum))
             {
@@ -46,14 +41,9 @@ export default class DonationsApi {
             res.end();
         });
         
-        this.router.delete('/:donationId', (req: Request, res: Response) => {
+        this.router.delete('/:donationId',isNumber, (req: Request, res: Response) => {
             const donationId = Number(req.params.donationId);;
-            if (!donationId || !_.isNumber(donationId)) {
-                res.status(400).send(`donationId is invalid, Sorry for the mistake, we promise to repent😉 ${req.params.donationId}`);
-                return;
-            }
-            const donation = this.service.deleteDonation(donationId);
-            res.send(donation);
+            res.send(this.service.deleteDonation(donationId));
         });
         
     }
