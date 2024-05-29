@@ -1,9 +1,10 @@
 import { Donation, FundRaiser } from "../types";
+import GroupsService from "./groupsService";
 
 export default class DonateService{
     private donateList: Array<FundRaiser>;
 
-    constructor()
+    constructor(private groupsService: GroupsService)
     {
         this.donateList=[
             {
@@ -70,6 +71,7 @@ export default class DonateService{
     }
 
     public addFundRaiser(fundRaiser: FundRaiser) {
+        this.groupsService.addFundRaiser(fundRaiser.groupNum,fundRaiser);
         this.donateList.push(fundRaiser);
     }
 

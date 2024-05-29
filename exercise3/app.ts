@@ -12,8 +12,11 @@ const PORT = 5060;
 const app = express();
 
 app.use(express.json()); 
+const groupsService = new GroupsService();
+const groupsApi = new GroupsApi(groupsService);
+groupsApi.setRoutes();
 
-const donateService = new DonateService();
+const donateService = new DonateService(groupsService);
 const donateApi = new DonateApi(donateService);
 donateApi.setRoutes();
 
@@ -21,9 +24,7 @@ const donationsService = new DonationsService(donateService);
 const donationsApi = new DonationsApi(donationsService);
 donationsApi.setRoutes();
 
-const groupsService = new GroupsService();
-const groupsApi = new GroupsApi(groupsService);
-groupsApi.setRoutes();
+
 
 app.use('/api/donations' ,donationsApi.router);
 app.use('/api/donate' ,donateApi.router);

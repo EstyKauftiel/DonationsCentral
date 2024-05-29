@@ -1,4 +1,4 @@
-import { Groups } from "../types";
+import { FundRaiser, Groups } from "../types";
 
 export default class GroupsService{
     private groupsList: Array<Groups>;
@@ -45,4 +45,9 @@ export default class GroupsService{
         const groupIndex = this.groupsList.findIndex(group => group.id == groupId);
         delete this.groupsList[groupIndex];
     }
+    public addFundRaiser(groupId: number,fundRaiser:FundRaiser ){
+        const groupIndex = this.groupsList.findIndex(group => group.id == groupId);
+        this.groupsList[groupIndex].donate.push(fundRaiser);
+    }
+    
 }
