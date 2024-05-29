@@ -1,34 +1,39 @@
 import { Donation } from "../types";
+import DonateService from "./donateService";
 
 export default class DonationsService{
     private donationList: Array<Donation>;
 
-    constructor()
+    constructor(private donateService: DonateService )
     {
         this.donationList=[
             {
                 id: 1,
                 name: "Yosf",
                 cell: "0521485247",
-                sum: 560
+                sum: 560,
+                FundRaiserID:1
             },
             {
                 id: 2,
                 name: "Michael",
                 cell: "0584236978",
-                sum: 200
+                sum: 200,
+                FundRaiserID:2
             },
             {
                 id: 3,
                 name: "Moshe",
                 cell: "0541236987",
-                sum: 780
+                sum: 780,
+                FundRaiserID:3
             },
             {
                 id: 4,
                 name: "Tamar",
                 cell: "0536987236",
-                sum: 1050
+                sum: 1050,
+                FundRaiserID:4
             },
         ]
     }
@@ -41,6 +46,7 @@ export default class DonationsService{
     }
 
     public addDonation(donation: Donation) {
+        this.donateService.addDonation(donation.FundRaiserID,donation);
         this.donationList.push(donation);
     }
 

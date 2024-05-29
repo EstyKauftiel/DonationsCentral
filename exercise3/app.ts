@@ -13,13 +13,13 @@ const app = express();
 
 app.use(express.json()); 
 
-const donationsService = new DonationsService();
-const donationsApi = new DonationsApi(donationsService);
-donationsApi.setRoutes();
-
 const donateService = new DonateService();
 const donateApi = new DonateApi(donateService);
 donateApi.setRoutes();
+
+const donationsService = new DonationsService(donateService);
+const donationsApi = new DonationsApi(donationsService);
+donationsApi.setRoutes();
 
 const groupsService = new GroupsService();
 const groupsApi = new GroupsApi(groupsService);

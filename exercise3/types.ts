@@ -11,6 +11,7 @@ export type Donation= {
     name: string;
     cell: string;
     sum: number;
+    FundRaiserID: number;
 }
 
 export type Groups= {
